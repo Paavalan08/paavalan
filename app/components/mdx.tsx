@@ -11,7 +11,7 @@ import rehypeKatex from 'rehype-katex';
 import remarkMath from 'remark-math';
 import 'katex/dist/katex.min.css';
 
-function CustomLink(props) {
+function CustomLink(props: any) {
   let href = props.href;
   if (href.startsWith('/')) {
     return (
@@ -26,20 +26,20 @@ function CustomLink(props) {
   return <a target="_blank" rel="noopener noreferrer" {...props} />;
 }
 
-function RoundedImage(props) {
+function RoundedImage(props: any) {
   return <Image alt={props.alt} className="rounded-lg" {...props} />;
 }
 
-function Code({ children, ...props }) {
+function Code({ children, ...props }: any) {
   let codeHTML = highlight(children);
   return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
 }
 
-function Table({ data }) {
-  let headers = data.headers.map((header, index) => <th key={index}>{header}</th>);
-  let rows = data.rows.map((row, index) => (
+function Table({ data }: any) {
+  let headers = data.headers.map((header: any, index: any) => <th key={index}>{header}</th>);
+  let rows = data.rows.map((row: any, index: any) => (
     <tr key={index}>
-      {row.map((cell, cellIndex) => (
+      {row.map((cell: any, cellIndex: any) => (
         <td key={cellIndex}>{cell}</td>
       ))}
     </tr>
@@ -54,11 +54,11 @@ function Table({ data }) {
   );
 }
 
-function Strikethrough(props) {
+function Strikethrough(props: any) {
   return <del {...props} />;
 }
 
-function Callout(props) {
+function Callout(props: any) {
   return (
     <div className="px-4 py-3 bg-[#F7F7F7] dark:bg-[#181818] rounded p-1 text-sm flex items-center text-neutral-900 dark:text-neutral-100 mb-8">
       <div className="flex items-center w-4 mr-4">{props.emoji}</div>
@@ -67,7 +67,7 @@ function Callout(props) {
   );
 }
 
-function slugify(str) {
+function slugify(str: any) {
   return str
     .toString()
     .toLowerCase()
@@ -78,8 +78,8 @@ function slugify(str) {
     .replace(/\-\-+/g, '-');
 }
 
-function createHeading(level) {
-  const Heading = ({ children }) => {
+function createHeading(level: any) {
+  const Heading = ({ children }: any) => {
     let slug = slugify(children);
     return React.createElement(
       `h${level}`,
@@ -117,7 +117,7 @@ let components = {
   Callout,
 };
 
-export function CustomMDX(props) {
+export function CustomMDX(props: any) {
   return (
     <MDXRemote
       {...props}
