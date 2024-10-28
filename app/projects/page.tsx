@@ -25,7 +25,7 @@ export default function Projects() {
           title: repo.name,
           url: repo.html_url,
           description: repo.description,
-          year: new Date(repo.created_at).getFullYear(),
+          year: repo.created_at ? new Date(repo.created_at).getFullYear() : 0,
         }));
         setProjects(repos);
       } catch (error) {

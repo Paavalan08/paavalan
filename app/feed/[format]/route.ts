@@ -1,13 +1,13 @@
 import { Feed } from 'feed';
-import { getBlogPosts } from '../lib/posts';
-import { metaData } from '../config';
+import { getBlogPosts } from '../../lib/posts';
+import { metaData } from '../../config';
 import { NextResponse } from 'next/server';
 
 export async function generateStaticParams() {
   return [{ format: 'rss.xml' }, { format: 'atom.xml' }, { format: 'feed.json' }];
 }
 
-export async function GET(_: Request, { params }: { params: { format: string } }) {
+export async function GET(_: Request, { params }: { params: { format: string; }; }) {
   const { format } = params;
   const validFormats = ['rss.xml', 'atom.xml', 'feed.json'];
 
@@ -50,7 +50,7 @@ export async function GET(_: Request, { params }: { params: { format: string } }
     });
   });
 
-  const responseMap: Record<string, { content: string; contentType: string }> = {
+  const responseMap: Record<string, { content: string; contentType: string; }> = {
     'rss.xml': { content: feed.rss2(), contentType: 'application/xml' },
     'atom.xml': { content: feed.atom1(), contentType: 'application/xml' },
     'feed.json': { content: feed.json1(), contentType: 'application/json' },
