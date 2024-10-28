@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React, { useEffect, useState } from 'react';
 import { Octokit } from '@octokit/rest';
@@ -21,7 +21,7 @@ export default function Projects() {
         const response = await octokit.repos.listForUser({
           username: 'Paavalan08',
         });
-        const repos: Project[] = response.data.map(repo => ({
+        const repos: Project[] = response.data.map((repo) => ({
           title: repo.name,
           url: repo.html_url,
           description: repo.description,
